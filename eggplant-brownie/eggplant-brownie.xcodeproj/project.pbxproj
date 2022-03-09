@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		CABC6E352799AAD200D59AB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABC6E342799AAD200D59AB8 /* AppDelegate.swift */; };
 		CABC6E372799AAD200D59AB8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABC6E362799AAD200D59AB8 /* SceneDelegate.swift */; };
-		CABC6E392799AAD200D59AB8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABC6E382799AAD200D59AB8 /* ViewController.swift */; };
+		CABC6E392799AAD200D59AB8 /* RefeicoesAddController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABC6E382799AAD200D59AB8 /* RefeicoesAddController.swift */; };
 		CABC6E3C2799AAD200D59AB8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CABC6E3A2799AAD200D59AB8 /* Main.storyboard */; };
 		CABC6E3E2799AAD200D59AB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABC6E3D2799AAD200D59AB8 /* Assets.xcassets */; };
 		CABC6E412799AAD200D59AB8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CABC6E3F2799AAD200D59AB8 /* LaunchScreen.storyboard */; };
@@ -18,6 +18,9 @@
 		CABC6E582799AAD200D59AB8 /* eggplant_brownieUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABC6E572799AAD200D59AB8 /* eggplant_brownieUITestsLaunchTests.swift */; };
 		CABC6E67279A109100D59AB8 /* Refeicao.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABC6E66279A109100D59AB8 /* Refeicao.swift */; };
 		CABC6E69279A111400D59AB8 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABC6E68279A111400D59AB8 /* Item.swift */; };
+		CAE980E627D1350C0028B60E /* RefeicoesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE980E527D1350C0028B60E /* RefeicoesTableViewController.swift */; };
+		CAE980E927D950100028B60E /* AdicionarItensViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE980E727D950100028B60E /* AdicionarItensViewController.swift */; };
+		CAE980EA27D950100028B60E /* AdicionarItensViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE980E827D950100028B60E /* AdicionarItensViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +44,7 @@
 		CABC6E312799AAD200D59AB8 /* eggplant-brownie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "eggplant-brownie.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CABC6E342799AAD200D59AB8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CABC6E362799AAD200D59AB8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CABC6E382799AAD200D59AB8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CABC6E382799AAD200D59AB8 /* RefeicoesAddController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefeicoesAddController.swift; sourceTree = "<group>"; };
 		CABC6E3B2799AAD200D59AB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CABC6E3D2799AAD200D59AB8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CABC6E402799AAD200D59AB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -53,6 +56,9 @@
 		CABC6E572799AAD200D59AB8 /* eggplant_brownieUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = eggplant_brownieUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		CABC6E66279A109100D59AB8 /* Refeicao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refeicao.swift; sourceTree = "<group>"; };
 		CABC6E68279A111400D59AB8 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		CAE980E527D1350C0028B60E /* RefeicoesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefeicoesTableViewController.swift; sourceTree = "<group>"; };
+		CAE980E727D950100028B60E /* AdicionarItensViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdicionarItensViewController.swift; sourceTree = "<group>"; };
+		CAE980E827D950100028B60E /* AdicionarItensViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdicionarItensViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,7 +150,9 @@
 		CABC6E6B279A122A00D59AB8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				CABC6E382799AAD200D59AB8 /* ViewController.swift */,
+				CABC6E382799AAD200D59AB8 /* RefeicoesAddController.swift */,
+				CAE980E527D1350C0028B60E /* RefeicoesTableViewController.swift */,
+				CAE980E727D950100028B60E /* AdicionarItensViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -153,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				CABC6E3A2799AAD200D59AB8 /* Main.storyboard */,
+				CAE980E827D950100028B60E /* AdicionarItensViewController.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -263,6 +272,7 @@
 			files = (
 				CABC6E412799AAD200D59AB8 /* LaunchScreen.storyboard in Resources */,
 				CABC6E3E2799AAD200D59AB8 /* Assets.xcassets in Resources */,
+				CAE980EA27D950100028B60E /* AdicionarItensViewController.xib in Resources */,
 				CABC6E3C2799AAD200D59AB8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -289,8 +299,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				CABC6E69279A111400D59AB8 /* Item.swift in Sources */,
-				CABC6E392799AAD200D59AB8 /* ViewController.swift in Sources */,
+				CABC6E392799AAD200D59AB8 /* RefeicoesAddController.swift in Sources */,
+				CAE980E927D950100028B60E /* AdicionarItensViewController.swift in Sources */,
 				CABC6E352799AAD200D59AB8 /* AppDelegate.swift in Sources */,
+				CAE980E627D1350C0028B60E /* RefeicoesTableViewController.swift in Sources */,
 				CABC6E372799AAD200D59AB8 /* SceneDelegate.swift in Sources */,
 				CABC6E67279A109100D59AB8 /* Refeicao.swift in Sources */,
 			);
