@@ -19,7 +19,7 @@ class RefeicoesAddController: UIViewController, UITableViewDataSource, UITableVi
 
     @IBOutlet var nomeTextFiel: UITextField?
     @IBOutlet weak var felicidadeTextFiel: UITextField?
-    @IBOutlet weak var itensTableView: UITableView!
+    @IBOutlet weak var itensTableView: UITableView?
     
     
     // MARK: - Variaveis
@@ -33,30 +33,32 @@ class RefeicoesAddController: UIViewController, UITableViewDataSource, UITableVi
     //Salvar os itens selecionados
     var itensSelecionados: [Item] = []
     
+    //Separando as responsabilidades que estão no método de adicionar
+    func recuperaRefeicaodoFormulario() -> Refeicao? {
+        
+        guard let nomeDaRefeicao = nomeTextFiel?.text else {
+            Alerta(controller: self).exibe(mensagem: "Erro ao ler o campo nome")
+            return nil
+        }
+        
+        guard let felicidadeDaRefeicao = felicidadeTextFiel?.text, let felicidade = Int(felicidadeDaRefeicao) else {
+            Alerta(controller: self).exibe(mensagem: "Erro ao ler o campo felicidade")
+            return nil
+        }
+        
+        let refeicao = Refeicao(nome: nomeDaRefeicao, felicidade: felicidade, itens: itensSelecionados)
+    
+        return refeicao
+    }
     
     // MARK: - IBAction
     
     @IBAction func add(_ sender: Any) {
-        
-        guard let nomeDaRefeicao = nomeTextFiel?.text else {
-            return
+        guard let refeicao = recuperaRefeicaodoFormulario() else {
+            return Alerta(controller: self).exibe(mensagem: "Erro ao ler dados do formulário")
         }
-        
-        guard let felicidadeDaRefeicao = felicidadeTextFiel?.text, let felicidade = Int(felicidadeDaRefeicao) else {
-            return
-        }
-        
-        let refeicao = Refeicao(nome: nomeDaRefeicao, felicidade: felicidade, itens: itensSelecionados)
-        
-        //Relacionar os itens selecionados com a refeição
-        refeicao.itens = itensSelecionados
-        
-        print("comi \(refeicao.nome) e fiquei com felicidade: \(refeicao.felicidade)")
-        
-        delegate?.add(refeicao)
-        
-        //Navegar entre as telas
-        navigationController?.popViewController(animated: true)
+        delegate?.add(refeicao) //Relacionar os itens selecionados com a refeição
+        navigationController?.popViewController(animated: true) //Navegar entre as telas
     }
     
     // MARK: - UITableView
@@ -128,7 +130,13 @@ class RefeicoesAddController: UIViewController, UITableViewDataSource, UITableVi
     
     func add(_ item: Item) {
         itens.append(item)
-        itensTableView.reloadData()
+        
+        //Tratamento de erro na TableView - Exception
+        if let tableView = itensTableView {
+            tableView.reloadData()
+        } else {
+            Alerta(controller: self).exibe(mensagem: "Não foi possível atualizar a tabela")
+        }
         
     }
     

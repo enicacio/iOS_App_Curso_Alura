@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA1DF7E32811F2A500C9716E /* Alerta.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1DF7E22811F2A500C9716E /* Alerta.swift */; };
+		CA1DF7E52812002E00C9716E /* RemoveRefeicaoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1DF7E42812002E00C9716E /* RemoveRefeicaoViewController.swift */; };
 		CABC6E352799AAD200D59AB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABC6E342799AAD200D59AB8 /* AppDelegate.swift */; };
 		CABC6E372799AAD200D59AB8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABC6E362799AAD200D59AB8 /* SceneDelegate.swift */; };
 		CABC6E392799AAD200D59AB8 /* RefeicoesAddController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABC6E382799AAD200D59AB8 /* RefeicoesAddController.swift */; };
@@ -41,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CA1DF7E22811F2A500C9716E /* Alerta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerta.swift; sourceTree = "<group>"; };
+		CA1DF7E42812002E00C9716E /* RemoveRefeicaoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveRefeicaoViewController.swift; sourceTree = "<group>"; };
 		CABC6E312799AAD200D59AB8 /* eggplant-brownie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "eggplant-brownie.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CABC6E342799AAD200D59AB8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CABC6E362799AAD200D59AB8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -143,6 +147,7 @@
 			children = (
 				CABC6E66279A109100D59AB8 /* Refeicao.swift */,
 				CABC6E68279A111400D59AB8 /* Item.swift */,
+				CA1DF7E22811F2A500C9716E /* Alerta.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -153,6 +158,7 @@
 				CABC6E382799AAD200D59AB8 /* RefeicoesAddController.swift */,
 				CAE980E527D1350C0028B60E /* RefeicoesTableViewController.swift */,
 				CAE980E727D950100028B60E /* AdicionarItensViewController.swift */,
+				CA1DF7E42812002E00C9716E /* RemoveRefeicaoViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -298,8 +304,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA1DF7E32811F2A500C9716E /* Alerta.swift in Sources */,
 				CABC6E69279A111400D59AB8 /* Item.swift in Sources */,
 				CABC6E392799AAD200D59AB8 /* RefeicoesAddController.swift in Sources */,
+				CA1DF7E52812002E00C9716E /* RemoveRefeicaoViewController.swift in Sources */,
 				CAE980E927D950100028B60E /* AdicionarItensViewController.swift in Sources */,
 				CABC6E352799AAD200D59AB8 /* AppDelegate.swift in Sources */,
 				CAE980E627D1350C0028B60E /* RefeicoesTableViewController.swift in Sources */,

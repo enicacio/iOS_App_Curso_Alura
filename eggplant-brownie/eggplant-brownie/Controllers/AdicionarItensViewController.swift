@@ -37,8 +37,6 @@ class AdicionarItensViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
     // MARK: - IBAction
@@ -52,7 +50,10 @@ class AdicionarItensViewController: UIViewController {
         guard let numeroDeCalorias = Double(calorias) else { return }
         
         let item = Item(nome: nome, calorias: numeroDeCalorias)
+        
+        //Verificar o delegate opcional chaining (if implicito)
         delegate?.add(item)
+        
         navigationController?.popViewController(animated: true)
     }
 }

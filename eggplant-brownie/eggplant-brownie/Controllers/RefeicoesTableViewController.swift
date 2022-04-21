@@ -46,8 +46,33 @@ class RefeicoesTableViewController: UITableViewController, RefeicoesAddControlle
         let celula = UITableViewCell(style: .default, reuseIdentifier: nil)
         celula.textLabel?.text = refeicao.nome //Colocar a label de texto para dentro da célula
         
+        //Long Press do usuário
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(mostrarDetalhes(_:)))
+        
+        celula.addGestureRecognizer(longPress)
+        
         return celula
     }
+    
+    // MARK: - LongPress Detail
+    @objc func mostrarDetalhes(_ gesture: UILongPressGestureRecognizer) {
+        if gesture.state == .began { //detalhar longpress apenas no estado inicial
+            let celula = gesture.view as! UITableViewCell
+            
+            //Extrair os valores da celula com segurança
+            guard let indexPath = tableView.indexPath(for: celula) else { return }
+            
+            //Guarda os dados extraídos em uma constante
+            let refeicao = refeicoes[indexPath.row]
+            
+            RemoveRefeicaoViewController(controller: self).exibe(refeicao, handler: { alert in
+                self.refeicoes.remove(at: indexPath.row)
+                self.tableView.reloadData()
+            })
+        }
+    }
+    
+    
     
     
     
