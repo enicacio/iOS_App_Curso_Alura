@@ -37,12 +37,12 @@ class RefeicoesAddController: UIViewController, UITableViewDataSource, UITableVi
     func recuperaRefeicaodoFormulario() -> Refeicao? {
         
         guard let nomeDaRefeicao = nomeTextFiel?.text else {
-            Alerta(controller: self).exibe(mensagem: "Erro ao ler o campo nome")
+            Alerta(controller: self).exibe(mensagem: "Digite o nome da Refeição")
             return nil
         }
         
         guard let felicidadeDaRefeicao = felicidadeTextFiel?.text, let felicidade = Int(felicidadeDaRefeicao) else {
-            Alerta(controller: self).exibe(mensagem: "Erro ao ler o campo felicidade")
+            Alerta(controller: self).exibe(mensagem: "Digite o valor da felicidade")
             return nil
         }
         
@@ -118,9 +118,16 @@ class RefeicoesAddController: UIViewController, UITableViewDataSource, UITableVi
     //Botão Add itens
     override func viewDidLoad() {
         let botaoAdicionaItem = UIBarButtonItem(title: "Novo Item", style: .plain, target: self, action: #selector(adicionarItem))
-        
-        //Adiciona o botão na barra de navegação
         navigationItem.rightBarButtonItem = botaoAdicionaItem
+        
+        do {
+            guard let diretory = recuperaDiretorio() else { return }
+            let data = try Data(contentsOf: diretory)
+            guard let itensSalvos = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [Item] else { return }
+            itens = itensSalvos
+        } catch {
+            print(error.localizedDescription)
+        }
     }
     
     @objc func adicionarItem() {
@@ -130,17 +137,30 @@ class RefeicoesAddController: UIViewController, UITableViewDataSource, UITableVi
     
     func add(_ item: Item) {
         itens.append(item)
-        
-        //Tratamento de erro na TableView - Exception
+    
         if let tableView = itensTableView {
             tableView.reloadData()
         } else {
             Alerta(controller: self).exibe(mensagem: "Não foi possível atualizar a tabela")
         }
         
+        do {
+            let data = try NSKeyedArchiver.archivedData(withRootObject: itens,
+                requiringSecureCoding: false)
+            guard let caminho = recuperaDiretorio() else { return }
+            try data.write(to: caminho)
+        } catch {
+            print(error.localizedDescription)
+        }
     }
     
-    
+    func recuperaDiretorio () -> URL? {
+        guard let diretorio = FileManager.default.urls(for: .documentDirectory, in:
+                .userDomainMask).first else { return nil }
+        let caminho = diretorio.appendingPathComponent("itens")
+        
+        return caminho
+    }
     
 }
 
