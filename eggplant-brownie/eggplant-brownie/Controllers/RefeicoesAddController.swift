@@ -14,7 +14,6 @@ protocol RefeicoesAddControllerDelegate {
 
 class RefeicoesAddController: UIViewController, UITableViewDataSource, UITableViewDelegate, AdicionaItensDelegate {
 
-    
     // MARK: - IBOutlets
 
     @IBOutlet var nomeTextFiel: UITextField?
@@ -25,12 +24,7 @@ class RefeicoesAddController: UIViewController, UITableViewDataSource, UITableVi
     // MARK: - Variaveis
     
     var delegate: RefeicoesAddControllerDelegate?
-    var itens: [Item] = [Item(nome: "Molho de tomate", calorias: 40.0),
-                         Item(nome: "Queijo", calorias: 40.0),
-                         Item(nome: "Manjericão", calorias: 40.0),
-                         Item(nome: "Ketchup", calorias: 40.0)]
-    
-    //Salvar os itens selecionados
+    var itens: [Item] = []
     var itensSelecionados: [Item] = []
     
     //Separando as responsabilidades que estão no método de adicionar
@@ -77,9 +71,34 @@ class RefeicoesAddController: UIViewController, UITableViewDataSource, UITableVi
         return cell
     }
     
-    // MARK: - UITableViewDelegate
+    // MARK: - View Life Cycle
     
-    //Enxergar o que o usuário está selecionando na tela
+    override func viewDidLoad() {
+        let botaoAdicionaItem = UIBarButtonItem(title: "Novo Item", style: .plain, target: self, action: #selector(adicionarItem))
+        navigationItem.rightBarButtonItem = botaoAdicionaItem
+        recuperaItens()
+    }
+    
+    func recuperaItens() {
+        itens = ItemDAO().recuperaListItens()
+    }
+    
+    @objc func adicionarItem() {
+        let adicionarItensViewController = AdicionarItensViewController(delegate: self)
+        navigationController?.pushViewController(adicionarItensViewController, animated: true)
+    }
+    
+    func add(_ item: Item) {
+        itens.append(item)
+        ItemDAO().save(itens)
+        if let tableView = itensTableView {
+            tableView.reloadData()
+        } else {
+            Alerta(controller: self).exibe(mensagem: "Não foi possível atualizar a tabela")
+        }
+    }
+    // MARK: - UITableViewDataSource
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         tableView.delegate = self
@@ -97,70 +116,12 @@ class RefeicoesAddController: UIViewController, UITableViewDataSource, UITableVi
 
         } else {
             celula.accessoryType = .none
-            
-            //Achar a posição do elemento
             let item = itens[indexPath.row]
             
-            //Procurar o elemento na posição encontrada
             if let position = itensSelecionados.firstIndex(of: item) {
                 itensSelecionados.remove(at: position)
-                
-                //Teste para saber se removeu corretamente da lista
-//                for itemSelecionado in itensSelecionados {
-//                    print(itemSelecionado.nome)
-//                }
             }
         }
     }
-    
-    // MARK: - View Life Cycle
-    
-    //Botão Add itens
-    override func viewDidLoad() {
-        let botaoAdicionaItem = UIBarButtonItem(title: "Novo Item", style: .plain, target: self, action: #selector(adicionarItem))
-        navigationItem.rightBarButtonItem = botaoAdicionaItem
-        
-        do {
-            guard let diretory = recuperaDiretorio() else { return }
-            let data = try Data(contentsOf: diretory)
-            guard let itensSalvos = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [Item] else { return }
-            itens = itensSalvos
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
-    
-    @objc func adicionarItem() {
-        let adicionarItensViewController = AdicionarItensViewController(delegate: self)
-        navigationController?.pushViewController(adicionarItensViewController, animated: true)
-    }
-    
-    func add(_ item: Item) {
-        itens.append(item)
-    
-        if let tableView = itensTableView {
-            tableView.reloadData()
-        } else {
-            Alerta(controller: self).exibe(mensagem: "Não foi possível atualizar a tabela")
-        }
-        
-        do {
-            let data = try NSKeyedArchiver.archivedData(withRootObject: itens,
-                requiringSecureCoding: false)
-            guard let caminho = recuperaDiretorio() else { return }
-            try data.write(to: caminho)
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
-    
-    func recuperaDiretorio () -> URL? {
-        guard let diretorio = FileManager.default.urls(for: .documentDirectory, in:
-                .userDomainMask).first else { return nil }
-        let caminho = diretorio.appendingPathComponent("itens")
-        
-        return caminho
-    }
-    
 }
 

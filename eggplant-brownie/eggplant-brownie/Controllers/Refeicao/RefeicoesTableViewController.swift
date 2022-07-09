@@ -10,46 +10,17 @@ import UIKit
 
 class RefeicoesTableViewController: UITableViewController, RefeicoesAddControllerDelegate {
     
-    var refeicoes = [Refeicao(nome: "Macarrão", felicidade: 2),
-                     Refeicao(nome: "Pizza", felicidade: 4),
-                     Refeicao(nome: "Comida Japonesa", felicidade: 5)]
+    var refeicoes: [Refeicao] = []
     
     override func viewDidLoad() {
-        guard let caminho = recuperaDiretorio() else { return }
-        
-        //Ler os dados salvos no armazenado
-        do {
-            let dados = try Data(contentsOf: caminho)
-            guard let refeixoesSalvas = try
-            NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(dados) as?
-                    Array<Refeicao> else { return }
-            refeicoes = refeixoesSalvas
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
-    
-    func recuperaDiretorio () -> URL? {
-        guard let diretorio = FileManager.default.urls(for: .documentDirectory, in:
-                .userDomainMask).first else { return nil }
-        let caminho = diretorio.appendingPathComponent("refeicao")
-        
-        return caminho
+        refeicoes = RefeicaoDAO().recuperaList()
     }
     
     //Adicionar as refeições no array criado
     func add(_ refeicao: Refeicao) {
         refeicoes.append(refeicao)
-        tableView.reloadData()// atualizar as refeições adicionadas pela tela viewcontroller
-        
-        guard let caminho = recuperaDiretorio() else { return }
-        
-        do {
-            let dados = try NSKeyedArchiver.archivedData(withRootObject: refeicoes, requiringSecureCoding: false)
-            try dados.write(to: caminho)
-        } catch {
-            print(error.localizedDescription)
-        }
+        tableView.reloadData()
+        RefeicaoDAO().save(refeicoes)
     }
     
     //Trabalhando com segue no Storyboard - Acoplado
